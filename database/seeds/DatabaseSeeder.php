@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Waypoint;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -11,6 +12,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UserSeeder::class);
+        // delete current db tables data
+        Waypoint::truncate();
+
+        // populate db tables with fresh data
+        $this->call(WaypointSeeder::class);
     }
 }
