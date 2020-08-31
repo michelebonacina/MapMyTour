@@ -13,4 +13,5 @@ A Standard Point is the base for every other points types. Contains informations
 The Standard Point cannot be used standalone; it's extended by specialized points types.
 
 ## Waypoints
-A waypoint adds to Standard Point a name
+A waypoint adds to Standard Point information about:
+- name: the name of the place identified by the point
