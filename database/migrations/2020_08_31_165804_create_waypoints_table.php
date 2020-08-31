@@ -15,6 +15,10 @@ class CreateWaypointsTable extends Migration
     {
         Schema::create('waypoints', function (Blueprint $table) {
             $table->id();
+            $table->string('name', 128);
+            $table->decimal('latitude', 32, 28);
+            $table->decimal('longitude', 32, 28);
+            $table->integer('altitude');
             $table->timestamps();
         });
     }
