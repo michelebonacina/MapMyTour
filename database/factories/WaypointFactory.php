@@ -1,6 +1,9 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+/**
+ * Generate waypoints test data.
+ * @var \Illuminate\Database\Eloquent\Factory $factory
+ */
 
 use App\Models\Waypoint;
 use Faker\Generator as Faker;

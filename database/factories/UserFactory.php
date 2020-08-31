@@ -1,6 +1,10 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+/**
+ * Generate user test data.
+ * The generated password is 'password' for each user.
+ * @var \Illuminate\Database\Eloquent\Factory $factory
+ */
 
 use App\Models\User;
 use Faker\Generator as Faker;

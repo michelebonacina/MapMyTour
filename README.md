@@ -2,7 +2,7 @@
 Web Application for managing GPS tour around the world.
 
 ## In progress
-Added only Laravel base project
+
 
 ## Standard Point
 A Standard Point is the base for every other points types. Contains informations about:
