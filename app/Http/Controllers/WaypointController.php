@@ -14,7 +14,9 @@ class WaypointController extends Controller
      */
     public function index()
     {
-        //
+        $waypoints = Waypoint::all();
+        // go to waypoints view
+        return view('waypoints\list', ['waypoints' => $waypoints]);
     }
 
     /**
