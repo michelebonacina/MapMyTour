@@ -5,16 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Waypoint;
 use Illuminate\Http\Request;
 
-class WaypointController extends Controller
-{
+class WaypointController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $waypoints = Waypoint::all();
+    public function index() {
+        $waypoints = Waypoint::orderBy('name')->get();
         // go to waypoints view
         return view('waypoints\list', ['waypoints' => $waypoints]);
     }
@@ -24,9 +23,9 @@ class WaypointController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function create() {
+        // not needed
+        throw new Exception("Not yet implemented");
     }
 
     /**
@@ -35,9 +34,26 @@ class WaypointController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request) {
+        // vaidate data
+        $validatedData = $request->validate(
+                [
+                    'name' => 'required',
+                    'latitude' => 'required|min:-90|max:90',
+                    'longitude' => 'required|min:-180|max:180'
+                ]
+        );
+        // create the new waypoint
+        $waypoint = new Waypoint();
+        // set waypoint data
+        $waypoint->name = $request->input('name');
+        $waypoint->latitude = $request->input('latitude');
+        $waypoint->longitude = $request->input('longitude');
+        $waypoint->altitude = $request->input('altitude');
+        // save waypoint
+        $waypoint->save();
+        // show waypoint list
+        return redirect()->route('waypoint.list');
     }
 
     /**
@@ -46,9 +62,9 @@ class WaypointController extends Controller
      * @param  \App\Models\Waypoint  $waypoint
      * @return \Illuminate\Http\Response
      */
-    public function show(Waypoint $waypoint)
-    {
-        //
+    public function show(Waypoint $waypoint) {
+        // not needed
+        throw new Exception("Not yet implemented");
     }
 
     /**
@@ -57,9 +73,9 @@ class WaypointController extends Controller
      * @param  \App\Models\Waypoint  $waypoint
      * @return \Illuminate\Http\Response
      */
-    public function edit(Waypoint $waypoint)
-    {
-        //
+    public function edit(Waypoint $waypoint) {
+        // not needed
+        throw new Exception("Not yet implemented");
     }
 
     /**
@@ -69,8 +85,7 @@ class WaypointController extends Controller
      * @param  \App\Models\Waypoint  $waypoint
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Waypoint $waypoint)
-    {
+    public function update(Request $request, Waypoint $waypoint) {
         //
     }
 
@@ -80,8 +95,8 @@ class WaypointController extends Controller
      * @param  \App\Models\Waypoint  $waypoint
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Waypoint $waypoint)
-    {
+    public function destroy(Waypoint $waypoint) {
         //
     }
+
 }
