@@ -27,8 +27,10 @@ Route::group(
         'prefix' => 'waypoints'
     ],
     function() {
-        Route::get('/', 'WaypointController@index')->name('waypoint.list');         // list waypoints
-        Route::post('/new', 'WaypointController@store')->name('waypoint.new');      // add new waypoint
+        Route::get('/', 'WaypointController@index')->name('waypoint.home');             // list waypoints
+        Route::get('/index', 'WaypointController@index')->name('waypoint.index');       // list waypoints
+        Route::get('/create', 'WaypointController@create')->name('waypoint.create');    // show new waypoint form
+        Route::post('/store', 'WaypointController@store')->name('waypoint.store');      // add new waypoint
     }
 );
 

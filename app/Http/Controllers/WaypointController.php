@@ -15,7 +15,7 @@ class WaypointController extends Controller {
     public function index() {
         $waypoints = Waypoint::orderBy('name')->get();
         // go to waypoints view
-        return view('waypoints\list', ['waypoints' => $waypoints]);
+        return view('waypoints\index')->with(['waypoints' => $waypoints]);
     }
 
     /**
@@ -24,8 +24,8 @@ class WaypointController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        // not needed
-        throw new Exception("Not yet implemented");
+        // go to new waypoint form
+        return view('waypoints/create');
     }
 
     /**
