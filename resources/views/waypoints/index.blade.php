@@ -25,6 +25,7 @@
                 <th scope="col" class="text-center">Latitude</th>
                 <th scope="col" class="text-center">Longitude</th>
                 <th scope="col" class="text-center">Altitude</th>
+                <th scope="col" class="text-center">&nbsp;</th>
             </tr>
         </thead>
         <tbody>
@@ -35,8 +36,17 @@
                 <td class="text-right">{{$waypoint->latitude}}</td>
                 <td class="text-right">{{$waypoint->longitude}}</td>
                 <td class="text-right">{{$waypoint->altitude}}</td>
+                <td class="text-right form-inline">
+                    <a href="{{route('waypoint.show', $waypoint->id)}}" class="btn btn-primary ml-1">Details</a>
+                    <a href="{{route('waypoint.edit', $waypoint->id)}}" class="btn btn-primary ml-1">Edit</a>
+                    <form class="ml-1" action="{{route('waypoint.destroy', $waypoint->id)}}" method="POST">
+                        @method('DELETE')
+                        @csrf
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('Ok to proceed with waypoint \'{{$waypoint->name}}\' deletion?')">Delete</button>
+                    </form>
+                </td>
             </tr>
-            @endforeach            
+            @endforeach
         </tbody>
     </table>
 </div>

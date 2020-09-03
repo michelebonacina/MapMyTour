@@ -21,16 +21,27 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-// Waypoints routes
+// waypoints routes
 Route::group(
     [
         'prefix' => 'waypoints'
     ],
     function() {
-        Route::get('/', 'WaypointController@index')->name('waypoint.home');             // list waypoints
-        Route::get('/index', 'WaypointController@index')->name('waypoint.index');       // list waypoints
-        Route::get('/create', 'WaypointController@create')->name('waypoint.create');    // show new waypoint form
-        Route::post('/store', 'WaypointController@store')->name('waypoint.store');      // add new waypoint
+        // list waypoints
+        Route::get('/', 'WaypointController@index')->name('waypoint.home');
+        Route::get('/index', 'WaypointController@index')->name('waypoint.index');
+        // show waypoints details
+        Route::get('/{waypoint}', 'WaypointController@show')->where('waypoint', '[0-9]+')->name('waypoint.show');
+        // show new waypoint form
+        Route::get('/create', 'WaypointController@create')->name('waypoint.create');
+        // add new waypoint
+        Route::post('/', 'WaypointController@store')->name('waypoint.store');
+        // show edit waypoint form
+        Route::get('/{waypoint}/edit', 'WaypointController@edit')->where('waypoint', '[0-9]+')->name('waypoint.edit');
+        // update existing waypoint 
+        Route::patch('/{waypoint}', 'WaypointController@update')->where('waypoint', '[0-9]+')->name('waypoint.update');
+        // delete existing waypoint 
+        Route::delete('/{waypoint}', 'WaypointController@destroy')->where('waypoint', '[0-9]+')->name('waypoint.destroy');
     }
 );
 
