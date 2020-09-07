@@ -39,4 +39,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Returns waypoints create by the user.
+     *
+     * @return Array waypoints list
+     */
+    public function waypoints()
+    {
+        return $this->hasMany(Waypoint::class);
+    }
 }
