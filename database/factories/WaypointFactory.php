@@ -13,6 +13,7 @@ $factory->define(Waypoint::class, function (Faker $faker) {
         'name' => $faker->city,
         'latitude' => $faker->latitude,
         'longitude' => $faker->longitude,
-        'altitude' => $faker->numberBetween(0,2000)
+        'altitude' => $faker->numberBetween(0,2000),
+        'user_id' => 2
     ];
 });
