@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,7 +25,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 // waypoints routes
 Route::group(
     [
-        'prefix' => 'waypoints'
+        'prefix' => 'waypoints',
+        'middleware' => ['auth', 'verified']
     ],
     function() {
         // list waypoints
@@ -38,9 +40,9 @@ Route::group(
         Route::post('/', 'WaypointController@store')->name('waypoint.store');
         // show edit waypoint form
         Route::get('/{waypoint}/edit', 'WaypointController@edit')->where('waypoint', '[0-9]+')->name('waypoint.edit');
-        // update existing waypoint 
+        // update existing waypoint
         Route::patch('/{waypoint}', 'WaypointController@update')->where('waypoint', '[0-9]+')->name('waypoint.update');
-        // delete existing waypoint 
+        // delete existing waypoint
         Route::delete('/{waypoint}', 'WaypointController@destroy')->where('waypoint', '[0-9]+')->name('waypoint.destroy');
     }
 );
