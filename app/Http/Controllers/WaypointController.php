@@ -2,12 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\WaypointRequest;
 use App\Models\Waypoint;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class WaypointController extends Controller
 {
+
+    /**
+     * Create a new waypoint controller.
+     */
+    public function __construct()
+    {
+        // inizialize authorizations
+        $this->authorizeResource(Waypoint::class, 'waypoint');
+    }
 
     /**
      * Display a listing of the resource.
@@ -40,16 +50,8 @@ class WaypointController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(WaypointRequest $request)
     {
-        // validate data
-        $validatedData = $request->validate(
-            [
-                'name' => 'required',
-                'latitude' => 'required|min:-90|max:90',
-                'longitude' => 'required|min:-180|max:180'
-            ]
-        );
         // create the new waypoint
         $waypoint = new Waypoint();
         // set waypoint data
@@ -95,19 +97,8 @@ class WaypointController extends Controller
      * @param  \App\Models\Waypoint  $waypoint
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Waypoint $waypoint)
+    public function update(WaypointRequest $request, Waypoint $waypoint)
     {
-        // validate data
-        $validatedData = $request->validate(
-            [
-                'id' => 'required',
-                'name' => 'required',
-                'latitude' => 'required|min:-90|max:90',
-                'longitude' => 'required|min:-180|max:180'
-            ]
-        );
-        // create the new waypoint
-        // $waypoint = Waypoint::find($request->input('id'));
         // set waypoint data
         $waypoint->name = $request->input('name');
         $waypoint->latitude = $request->input('latitude');
