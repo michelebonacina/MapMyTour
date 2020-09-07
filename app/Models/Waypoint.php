@@ -9,4 +9,14 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Waypoint extends Model
 {
+
+    /**
+     * Return user who creates this waypoint-
+     *
+     * @return User user
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

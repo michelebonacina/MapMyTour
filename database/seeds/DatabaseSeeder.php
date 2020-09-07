@@ -3,6 +3,7 @@
 use App\Models\User;
 use App\Models\Waypoint;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +14,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        // disable foreig keys
+        Schema::disableForeignKeyConstraints();
+
         // delete current db tables data
         Waypoint::truncate();
         User::truncate();

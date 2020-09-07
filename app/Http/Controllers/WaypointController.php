@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Waypoint;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class WaypointController extends Controller
 {
@@ -15,7 +16,9 @@ class WaypointController extends Controller
      */
     public function index()
     {
-        $waypoints = Waypoint::orderBy('name')->get();
+        $queryBuilder = Waypoint::orderBy('name');
+        $queryBuilder->where('user_id', Auth::user()->id);
+        $waypoints = $queryBuilder->get();
         // go to waypoints list view
         return view('waypoints.index')->with(['waypoints' => $waypoints]);
     }
@@ -54,6 +57,7 @@ class WaypointController extends Controller
         $waypoint->latitude = $request->input('latitude');
         $waypoint->longitude = $request->input('longitude');
         $waypoint->altitude = $request->input('altitude');
+        $waypoint->user_id = Auth::user()->id;
         // save waypoint
         $waypoint->save();
         // show waypoint list
