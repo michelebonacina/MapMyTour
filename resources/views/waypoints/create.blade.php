@@ -5,38 +5,36 @@
 <!-- new waypoint form -->
 <div class="container">
     <div class="card">
-        <h5 class="card-header bg-primary text-light">Add new Waypoint</h5>
+        <h5 class="card-header bg-dark text-light">@lang('waypoint.new')</h5>
         <div class="card-body">
             <form method="POST" action="{{route('waypoint.store')}}" \>
                 @csrf
                 <div class="form-group">
-                    <label for="name">Name</label>
+                    <label for="name">@lang('waypoint.name')</label>
                     <input type="text" required class="form-control" id="name" name="name" value="{{old('name')}}"
                         autofocus aria-describedby="nameHelp">
-                    <small id="nameHelp" class="form-text text-muted">The name of the waypoint.</small>
+                    <small id="nameHelp" class="form-text text-muted">@lang('waypoint.name.descr')</small>
                 </div>
                 <div class="form-group">
-                    <label for="latitude">Latitude</label>
+                    <label for="latitude">@lang('waypoint.latitude')</label>
                     <input type="number" step="any" min="-90" max="90" required class="form-control" id="latitude"
                         name="latitude" value="{{old('latitude')}}" aria-describedby="latitudeHelp">
-                    <small id="latitudeHelp" class="form-text text-muted">The latitude coordinate of the waypoint.
-                        Between -90 and +90.</small>
+                    <small id="latitudeHelp" class="form-text text-muted">@lang('waypoint.latitude.descr')</small>
                 </div>
                 <div class="form-group">
-                    <label for="longitude">Longitude</label>
+                    <label for="longitude">@lang('waypoint.longitude')</label>
                     <input type="number" step="any" min="-180" max="180" required class="form-control" id="longitude"
                         name="longitude" value="{{old('longitude')}}" aria-describedby="longitudeHelp">
-                    <small id="longitudeHelp" class="form-text text-muted">The longitude coordinate of the waypoint.
-                        Between -180 and +180.</small>
+                    <small id="longitudeHelp" class="form-text text-muted">@lang('waypoint.longitude.descr')</small>
                 </div>
                 <div class="form-group">
-                    <label for="altitude">Altitude</label>
+                    <label for="altitude">@lang('waypoint.altitude')</label>
                     <input type="number" class="form-control" id="altitude" name="altitude" value="{{old('altitude')}}"
                         aria-describedby="altitudeHelp">
-                    <small id="altitudeHelp" class="form-text text-muted">The altitude of the waypoint.</small>
+                    <small id="altitudeHelp" class="form-text text-muted">@lang('waypoint.altitude.descr')</small>
                 </div>
-                <button type="submit" class="btn btn-success">Add</button>
-                <a href="{{route('waypoint.index')}}" class="btn btn-secondary">Cancel</a>
+                <button type="submit" class="btn btn-success">@lang('general.add')</button>
+                <a href="{{route('waypoint.index')}}" class="btn btn-secondary">@lang('general.cancel')</a>
             </form>
         </div>
     </div>

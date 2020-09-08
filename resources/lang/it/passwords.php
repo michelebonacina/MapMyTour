@@ -13,11 +13,20 @@ return [
     |
     */
 
-    'password'  => "Le password devono corrispondere e contenere almeno 6 caratteri.",
-    'reset'     => "La tua password è stata resettata!",
-    'sent'      => "Ti abbiamo inviato il link per il reset della password via email!",
-    'throttled' => 'Prego attendere prima di riprovare.',
-    'token'     => "Il token di reset della password non è valido.",
-    'user'      => "Non è possibile trovare un utente con l'indirizzo email inserito.",
+    'confirm' => "Conferma la Password",
+    'confirm.descr' => "Conferma la tua password prima di continuare.",
+    'email' => "Indirizzo E-Mail",
+    'forgot.msg' => "Password dimenticata?",
+    'login' => "Login",
+    'password' => "Password",
+    'password.err' => "Le password devono corrispondere e contenere almeno 6 caratteri.",
+    'register' => "Registrazione",
+    'remember' => "Ricordami",
+    'reset' => "Reimposta Password",
+    'reset.msg' => "La tua password è stata resettata!",
+    'sent.msg' => "Ti abbiamo inviato il link per il reset della password via email!",
+    'throttled.err' => "Prego attendere prima di riprovare.",
+    'token.err' => "Il token di reset della password non è valido.",
+    'user.err' => "Non è possibile trovare un utente con l'indirizzo email inserito.",
 
 ];
