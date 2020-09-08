@@ -40,6 +40,8 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        @guest
+                        @else
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -49,14 +51,11 @@
                                 <a class="dropdown-item" href="{{route('waypoint.index')}}">@lang('waypoint.waypoint')</a>
                             </div>
                         </li>
+                        @endguest
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        <!-- Locale -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">{{ strtoupper(App::getLocale()) }}</a>
-                        </li>
                         <!-- Authentication Links -->
                         @guest
                         <li class="nav-item">
@@ -86,6 +85,10 @@
                             </div>
                         </li>
                         @endguest
+                        <!-- Locale -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">{{ strtoupper(App::getLocale()) }}</a>
+                        </li>
                     </ul>
                 </div>
             </div>
