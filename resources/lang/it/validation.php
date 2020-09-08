@@ -40,6 +40,7 @@ return [
     'dimensions'           => "Le dimensioni immagine di ':attribute' non sono valide",
     'distinct'             => "':attribute' contiene dei valori duplicati",
     'email'                => "':attribute' deve essere un indirizzo email valido.",
+    'ends_with'            => ':attribute deve terminare con uno dei seguenti valori: :values.',
     'exists'               => "L'elemento ':attribute' selezionato non è valido.",
     'file'                 => "':attribute' deve essere un file.",
     'filled'               => "':attribute' deve essere valorizzato.",
