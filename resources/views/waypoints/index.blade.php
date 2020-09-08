@@ -18,7 +18,7 @@
 <!-- waypoints list table -->
 <div class="container mt-1">
     <table class="table table-hover">
-        <thead class="bg-primary text-light">
+        <thead class="bg-dark text-light">
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
