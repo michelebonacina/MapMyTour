@@ -6,11 +6,11 @@
 <div class="container">
     <div class="row">
         <div class="col-sm">
-            <a href="{{route('waypoint.create')}}" class="btn btn-success">New Waypoint</a>
+            <a href="{{route('waypoint.create')}}" class="btn btn-success">@lang('waypoint.new')</a>
         </div>
         <div class="col-sm text-right">
-            <button type="button" class="btn btn-primary" disabled>Switch to Map</button>
-            <button type="button" class="btn btn-primary" disabled>Filters</button>
+            <button type="button" class="btn btn-primary" disabled>@lang('general.switch_map')</button>
+            <button type="button" class="btn btn-primary" disabled>@lang('general.filters')</button>
         </div>
     </div>
 </div>
@@ -18,13 +18,13 @@
 <!-- waypoints list table -->
 <div class="container mt-1">
     <table class="table table-hover">
-        <thead class="bg-primary text-light">
+        <thead class="bg-dark text-light">
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col" class="text-center">Latitude</th>
-                <th scope="col" class="text-center">Longitude</th>
-                <th scope="col" class="text-center">Altitude</th>
+                <th scope="col">@lang('waypoint.name')</th>
+                <th scope="col" class="text-center">@lang('waypoint.latitude')</th>
+                <th scope="col" class="text-center">@lang('waypoint.longitude')</th>
+                <th scope="col" class="text-center">@lang('waypoint.altitude')</th>
                 <th scope="col" class="text-center">&nbsp;</th>
             </tr>
         </thead>
@@ -37,12 +37,12 @@
                 <td class="text-right">{{$waypoint->longitude}}</td>
                 <td class="text-right">{{$waypoint->altitude}}</td>
                 <td class="text-right form-inline">
-                    <a href="{{route('waypoint.show', $waypoint->id)}}" class="btn btn-primary ml-1">Details</a>
-                    <a href="{{route('waypoint.edit', $waypoint->id)}}" class="btn btn-primary ml-1">Edit</a>
+                    <a href="{{route('waypoint.show', $waypoint->id)}}" class="btn btn-sm btn-primary ml-1">@lang('general.details')</a>
+                    <a href="{{route('waypoint.edit', $waypoint->id)}}" class="btn btn-sm btn-primary ml-1">@lang('general.edit')</a>
                     <form class="ml-1" action="{{route('waypoint.destroy', $waypoint->id)}}" method="POST">
                         @method('DELETE')
                         @csrf
-                    <button type="submit" class="btn btn-danger" onclick="return confirm('Ok to proceed with waypoint \'{{$waypoint->name}}\' deletion?')">Delete</button>
+                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Ok to proceed with waypoint \'{{$waypoint->name}}\' deletion?')">@lang('general.delete')</button>
                     </form>
                 </td>
             </tr>
