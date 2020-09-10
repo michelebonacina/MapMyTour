@@ -49,6 +49,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{route('waypoint.index')}}">@lang('waypoint.waypoint')</a>
+                                <a class="dropdown-item" href="{{route('track.index')}}">@lang('track.tracks')</a>
                             </div>
                         </li>
                         @endguest

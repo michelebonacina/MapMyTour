@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Track;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TrackController extends Controller
 {
@@ -14,7 +15,11 @@ class TrackController extends Controller
      */
     public function index()
     {
-        //
+        $queryBuilder = Track::orderBy('name');
+        $queryBuilder->where('user_id', Auth::user()->id);
+        $tracks = $queryBuilder->get();
+        // go to track list view
+        return view('tracks.index')->with(['tracks' => $tracks]);
     }
 
     /**
@@ -24,8 +29,8 @@ class TrackController extends Controller
      */
     public function create()
     {
-        //
-    }
+        // go to new track form
+        return view('tracks.create');    }
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +40,15 @@ class TrackController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // create the new track
+        $track = new Track();
+        // set track data
+        $track->name = $request->input('name');
+        $track->user_id = Auth::user()->id;
+        // save track
+        $track->save();
+        // show track list
+        return redirect()->route('track.index');
     }
 
     /**
@@ -46,7 +59,8 @@ class TrackController extends Controller
      */
     public function show(Track $track)
     {
-        //
+        // go to tracks show view
+        return view('tracks.show')->with(['track' => $track]);
     }
 
     /**
@@ -57,7 +71,8 @@ class TrackController extends Controller
      */
     public function edit(Track $track)
     {
-        //
+        // go to tracks edit view
+        return view('tracks.edit')->with(['track' => $track]);
     }
 
     /**
@@ -69,7 +84,12 @@ class TrackController extends Controller
      */
     public function update(Request $request, Track $track)
     {
-        //
+        // set track data
+        $track->name = $request->input('name');
+        // save track
+        $track->save();
+        // show track list
+        return redirect()->route('track.index');
     }
 
     /**
@@ -80,6 +100,9 @@ class TrackController extends Controller
      */
     public function destroy(Track $track)
     {
-        //
+        // delete track
+        $res = $track->delete();
+        // show track list
+        return redirect()->route('track.index');
     }
 }

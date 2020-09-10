@@ -36,8 +36,8 @@
                 <td class="text-right">{{$waypoint->latitude}}</td>
                 <td class="text-right">{{$waypoint->longitude}}</td>
                 <td class="text-right">{{$waypoint->altitude}}</td>
-                <td class="text-right form-inline">
-                    <a href="{{route('waypoint.show', $waypoint->id)}}" class="btn btn-sm btn-primary ml-1">@lang('general.details')</a>
+                <td class="form-inline">
+                    <a href="{{route('waypoint.show', $waypoint->id)}}" class="btn btn-sm btn-primary ml-auto">@lang('general.details')</a>
                     <a href="{{route('waypoint.edit', $waypoint->id)}}" class="btn btn-sm btn-primary ml-1">@lang('general.edit')</a>
                     <form class="ml-1" action="{{route('waypoint.destroy', $waypoint->id)}}" method="POST">
                         @method('DELETE')
