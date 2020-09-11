@@ -7,7 +7,7 @@
     <div class="card">
         <h5 class="card-header bg-dark text-light">@lang('waypoint.edit')</h5>
         <div class="card-body">
-            <form method="POST" action="{{route('waypoint.update', $waypoint->id)}}" \>
+            <form method="POST" action="{{route('waypoint.update', $waypoint->id)}}">
                 @csrf
                 @method('PATCH')
                 <input type="hidden" name="id" value="{{$waypoint->id}}">

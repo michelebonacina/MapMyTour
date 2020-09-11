@@ -7,7 +7,7 @@
     <div class="card">
         <h5 class="card-header bg-dark text-light">@lang('waypoint.new')</h5>
         <div class="card-body">
-            <form method="POST" action="{{route('waypoint.store')}}" \>
+            <form method="POST" action="{{route('waypoint.store')}}">
                 @csrf
                 <div class="form-group">
                     <label for="name">@lang('waypoint.name')</label>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TrackRequest;
 use App\Models\Track;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -38,13 +39,15 @@ class TrackController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TrackRequest $request)
     {
         // create the new track
         $track = new Track();
         // set track data
         $track->name = $request->input('name');
         $track->user_id = Auth::user()->id;
+        // process gpx file
+        $this->processGpxFile($track, $request);
         // save track
         $track->save();
         // show track list
@@ -82,7 +85,7 @@ class TrackController extends Controller
      * @param  \App\Models\Track  $track
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Track $track)
+    public function update(TrackRequest $request, Track $track)
     {
         // set track data
         $track->name = $request->input('name');
@@ -104,5 +107,17 @@ class TrackController extends Controller
         $res = $track->delete();
         // show track list
         return redirect()->route('track.index');
+    }
+
+    /**
+     * Process GPX file and create segments and points.
+     *
+     * @param Track $track
+     * @param Request $request
+     * @return void
+     */
+    private function processGpxFile(Track &$track, Request $request)
+    {
+        // TODO
     }
 }

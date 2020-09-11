@@ -7,7 +7,7 @@
     <div class="card">
         <h5 class="card-header bg-dark text-light">@lang('track.edit')</h5>
         <div class="card-body">
-            <form method="POST" action="{{route('track.update', $track->id)}}" \>
+            <form method="POST" action="{{route('track.update', $track->id)}}">
                 @csrf
                 @method('PATCH')
                 <input type="hidden" name="id" value="{{$track->id}}">
