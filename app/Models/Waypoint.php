@@ -11,7 +11,7 @@ class Waypoint extends Model
 {
 
     /**
-     * Return user who creates this waypoint-
+     * Return user who creates this waypoint.
      *
      * @return User user
      */
