@@ -6,6 +6,7 @@ use App\Http\Requests\TrackRequest;
 use App\Models\Track;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use MicheleBonacina\PhpGpxLib\GpxFileUtility;
 
 class TrackController extends Controller
 {
@@ -119,6 +120,13 @@ class TrackController extends Controller
     private function processGpxFile(Track &$track, Request $request)
     {
         // TODO
-        dd($request);
+        if ($request->hasFile('trackUpload'))
+        {
+            $file = $request->file('trackUpload');
+            $fileUtility = new GpxFileUtility();
+            $gpx = $fileUtility->loadTrackFromFile($file->getPathname());
+            dd($gpx);
+            ;
+        }
     }
 }

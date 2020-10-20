@@ -10,7 +10,10 @@
     "repositories": [
         {
             "type": "path",
-            "url": "D:\\Progetti\\Michele\\PhpGpxLib"
+            "url": "d:/Progetti/Michele/PhpGpxLib",
+            "options": {
+                "symlink": true
+            }
         }
     ],
     "require": {
@@ -21,7 +24,7 @@
         "laravel/framework": "^7.24",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.2",
-        "michelebonacina/phpgpxlib": "*"
+        "michelebonacina/phpgpxlib": "^1.0@dev"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
