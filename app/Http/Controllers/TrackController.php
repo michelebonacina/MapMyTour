@@ -119,5 +119,6 @@ class TrackController extends Controller
     private function processGpxFile(Track &$track, Request $request)
     {
         // TODO
+        dd($request);
     }
 }
