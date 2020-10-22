@@ -4,16 +4,19 @@ namespace App;
 
 use App\Models\Track;
 use Illuminate\Database\Eloquent\Model;
+use MicheleBonacina\PhpGpxLib\Track\GpxTrackSegmentTrait;
 
 class TrackSegment extends Model
 {
+
+    use GpxTrackSegmentTrait;
 
     /**
      * Return track who contains this segment.
      *
      * @return Track track
      */
-    public function track()
+    public function getTrack()
     {
         return $this->belongsTo(Track::class);
     }
@@ -23,7 +26,7 @@ class TrackSegment extends Model
      *
      * @return Array points list
      */
-    public function trackPoints()
+    public function listTrackPoints()
     {
         return $this->hasMany(TrackPoint::class);
     }

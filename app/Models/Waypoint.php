@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use MicheleBonacina\PhpGpxLib\Waypoint\GpxWaypointTrait;
 
 /**
  * GPS Waypoint.
@@ -10,12 +11,14 @@ use Illuminate\Database\Eloquent\Model;
 class Waypoint extends Model
 {
 
+    use GpxWaypointTrait;
+
     /**
      * Return user who creates this waypoint.
      *
      * @return User user
      */
-    public function user()
+    public function getUser()
     {
         return $this->belongsTo(User::class);
     }
