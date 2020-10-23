@@ -66,8 +66,6 @@ class TrackController extends Controller
      */
     public function show(Track $track)
     {
-        // dd(new DateTime($track->listTrackSegments()[0]->listTrackPoints()[0]->time));
-        dd($track->duration());
         // go to tracks show view
         return view('tracks.show')->with(['track' => $track]);
     }
