@@ -15,10 +15,11 @@ class CreateTrackSegmentsTable extends Migration
     {
         Schema::create('track_segments', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 128);
-            $table->string('color', 20);
+            $table->string('name', 128)->nullable();
+            $table->string('color', 20)->nullable();
             $table->bigInteger('track_id')->unsigned();
             $table->foreign('track_id')->on('tracks')->references('id')->onDelete('cascade')->onUpdate('cascade');
+            $table->timestamps();
         });
     }
 

@@ -17,13 +17,14 @@ class CreateTrackPointsTable extends Migration
             $table->id();
             $table->decimal('latitude', 32, 28);
             $table->decimal('longitude', 32, 28);
-            $table->integer('altitude');
-            $table->dateTimeTz('time', 0);
-            $table->decimal('temperature', 6, 2);
-            $table->integer('heart_rate');
-            $table->integer('cadence');
+            $table->integer('altitude')->nullable();
+            $table->dateTimeTz('time', 0)->nullable();
+            $table->decimal('temperature', 6, 2)->nullable();
+            $table->integer('heart_rate')->nullable();
+            $table->integer('cadence')->nullable();
             $table->bigInteger('track_segment_id')->unsigned();
             $table->foreign('track_segment_id')->on('track_segments')->references('id')->onDelete('cascade')->onUpdate('cascade');
+            $table->timestamps();
         });
     }
 

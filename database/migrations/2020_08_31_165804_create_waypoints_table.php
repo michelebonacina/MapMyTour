@@ -18,7 +18,7 @@ class CreateWaypointsTable extends Migration
             $table->string('name', 128);
             $table->decimal('latitude', 32, 28);
             $table->decimal('longitude', 32, 28);
-            $table->integer('altitude');
+            $table->integer('altitude')->nullable();
             $table->timestamps();
         });
     }

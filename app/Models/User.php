@@ -43,9 +43,9 @@ class User extends Authenticatable
     /**
      * Returns waypoints created by the user.
      *
-     * @return Array waypoints list
+     * @return waypoints list
      */
-    public function listWaypoints()
+    public function waypoints()
     {
         return $this->hasMany(Waypoint::class);
     }
@@ -53,9 +53,9 @@ class User extends Authenticatable
     /**
      * Returns tracks created by the user.
      *
-     * @return Array tracks list
+     * @return tracks list
      */
-    public function listTracks()
+    public function tracks()
     {
         return $this->hasMany(Track::class);
     }

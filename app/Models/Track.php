@@ -5,8 +5,9 @@ namespace App\Models;
 use App\TrackSegment;
 use Illuminate\Database\Eloquent\Model;
 use MicheleBonacina\PhpGpxLib\Track\GpxTrackTrait;
+use MicheleBonacina\PhpGpxLib\Track\GpxTrackTraitNeeds;
 
-class Track extends Model
+class Track extends Model implements GpxTrackTraitNeeds
 {
 
     use GpxTrackTrait;
@@ -14,9 +15,9 @@ class Track extends Model
     /**
      * Return user who creates this track.
      *
-     * @return User user
+     * @return user
      */
-    public function getUser()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
@@ -24,10 +25,20 @@ class Track extends Model
     /**
      * Returns segments conteined by the track.
      *
-     * @return Array segments list
+     * @return segments list
      */
-    public function listTrackSegments()
+    public function trackSegments()
     {
         return $this->hasMany(TrackSegment::class);
+    }
+
+    /**
+     * Returns segments list.
+     *
+     * @return array segments list
+     */
+    public function listTrackSegments(): array
+    {
+        return $this->trackSegments()->get()->all();
     }
 }

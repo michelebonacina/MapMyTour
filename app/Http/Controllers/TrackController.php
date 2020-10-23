@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\TrackRequest;
 use App\Models\Track;
+use App\TrackPoint;
+use App\TrackSegment;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use MicheleBonacina\PhpGpxLib\GpxFileUtility;
@@ -47,10 +50,10 @@ class TrackController extends Controller
         // set track data
         $track->name = $request->input('name');
         $track->user_id = Auth::user()->id;
-        // process gpx file
-        $this->processGpxFile($track, $request);
         // save track
         $track->save();
+        // process gpx file
+        $this->processGpxFile($track, $request);
         // show track list
         return redirect()->route('track.index');
     }
@@ -63,6 +66,8 @@ class TrackController extends Controller
      */
     public function show(Track $track)
     {
+        // dd(new DateTime($track->listTrackSegments()[0]->listTrackPoints()[0]->time));
+        dd($track->duration());
         // go to tracks show view
         return view('tracks.show')->with(['track' => $track]);
     }
@@ -125,8 +130,20 @@ class TrackController extends Controller
             $file = $request->file('trackUpload');
             $fileUtility = new GpxFileUtility();
             $gpx = $fileUtility->loadTrackFromFile($file->getPathname());
-            dd($gpx);
-            ;
+            $gpxTrack = $gpx->listTracks()[0];
+            $gpxTrackSegment = $gpxTrack->listTrackSegments()[0];
+            $trackSegment = new TrackSegment();
+            $trackSegment->name = "First";
+            $trackSegment->color = "black";
+            $track->trackSegments()->save($trackSegment);
+            foreach ($gpxTrackSegment->listTrackPoints() as $gpxTrackPoint) {
+                $trackPoint = new TrackPoint();
+                $trackPoint->latitude = $gpxTrackPoint->getLatitude();
+                $trackPoint->longitude = $gpxTrackPoint->getLongitude();
+                $trackPoint->altitude = $gpxTrackPoint->getAltitude();
+                $trackPoint->time = $gpxTrackPoint->getTimestamp();
+                $trackSegment->trackPoints()->save($trackPoint);
+            }
         }
     }
 }
