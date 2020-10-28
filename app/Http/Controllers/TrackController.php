@@ -9,6 +9,7 @@ use App\TrackSegment;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use MicheleBonacina\PhpGpxLib\GpxFileUtility;
 
 class TrackController extends Controller
@@ -35,7 +36,19 @@ class TrackController extends Controller
     public function create()
     {
         // go to new track form
-        return view('tracks.create');    }
+        return view('tracks.create');
+    }
+
+    /**
+     * Show the form for uploading a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function upload()
+    {
+        // go to new track form
+        return view('tracks.upload');
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -45,17 +58,49 @@ class TrackController extends Controller
      */
     public function store(TrackRequest $request)
     {
-        // create the new track
-        $track = new Track();
-        // set track data
-        $track->name = $request->input('name');
-        $track->user_id = Auth::user()->id;
-        // save track
-        $track->save();
-        // process gpx file
-        $this->processGpxFile($track, $request);
+        if ($request->hasFile('fileUpload')) {
+            // get request params
+            $file = $request->file('fileUpload');
+            // parse gpx file
+            $fileUtility = new GpxFileUtility();
+            $gpx = $fileUtility->loadTrackFromFile($file->getPathname());
+            // save gpx file data
+            DB::transaction(function () use ($gpx) {
+                foreach ($gpx->listTracks() as $trackIdx => $gpxTrack) {
+                    // create new track
+                    $track = new Track();
+                    // set track data
+                    $track->name = empty($gpxTrack->getName()) ? "New Track " . $trackIdx : $gpxTrack->getName();
+                    $track->user_id = Auth::user()->id;
+                    // save track
+                    $track->save();
+                    // load track segments
+                    foreach ($gpxTrack->listTrackSegments() as $trackSegmentIdx => $gpxTrackSegment) {
+                        // create new track segment
+                        $trackSegment = new TrackSegment();
+                        // set track segment data
+                        $trackSegment->name = $track->name . " " . $trackSegmentIdx;
+                        $trackSegment->color = "Black";
+                        // save track segment
+                        $track->trackSegments()->save($trackSegment);
+                        // load track points
+                        foreach ($gpxTrackSegment->listTrackPoints() as $gpxTrackPoint) {
+                            // create new track point
+                            $trackPoint = new TrackPoint();
+                            // se track point data
+                            $trackPoint->latitude = $gpxTrackPoint->getLatitude();
+                            $trackPoint->longitude = $gpxTrackPoint->getLongitude();
+                            $trackPoint->altitude = $gpxTrackPoint->getAltitude();
+                            $trackPoint->time = $gpxTrackPoint->getTime();
+                            // save track point
+                            $trackSegment->trackPoints()->save($trackPoint);
+                        }
+                    }
+                }
+            });
+        }
         // show track list
-        return redirect()->route('track.index');
+        return $this->index();
     }
 
     /**
@@ -111,37 +156,5 @@ class TrackController extends Controller
         $res = $track->delete();
         // show track list
         return redirect()->route('track.index');
-    }
-
-    /**
-     * Process GPX file and create segments and points.
-     *
-     * @param Track $track
-     * @param Request $request
-     * @return void
-     */
-    private function processGpxFile(Track &$track, Request $request)
-    {
-        // TODO
-        if ($request->hasFile('trackUpload'))
-        {
-            $file = $request->file('trackUpload');
-            $fileUtility = new GpxFileUtility();
-            $gpx = $fileUtility->loadTrackFromFile($file->getPathname());
-            $gpxTrack = $gpx->listTracks()[0];
-            $gpxTrackSegment = $gpxTrack->listTrackSegments()[0];
-            $trackSegment = new TrackSegment();
-            $trackSegment->name = "First";
-            $trackSegment->color = "black";
-            $track->trackSegments()->save($trackSegment);
-            foreach ($gpxTrackSegment->listTrackPoints() as $gpxTrackPoint) {
-                $trackPoint = new TrackPoint();
-                $trackPoint->latitude = $gpxTrackPoint->getLatitude();
-                $trackPoint->longitude = $gpxTrackPoint->getLongitude();
-                $trackPoint->altitude = $gpxTrackPoint->getAltitude();
-                $trackPoint->time = $gpxTrackPoint->getTimestamp();
-                $trackSegment->trackPoints()->save($trackPoint);
-            }
-        }
     }
 }

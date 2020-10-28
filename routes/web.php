@@ -58,6 +58,8 @@ Route::group(
         Route::get('/{track}', 'TrackController@show')->where('track', '[0-9]+')->name('track.show');
         // show new track form
         Route::get('/create', 'TrackController@create')->name('track.create');
+        // show upload track form
+        Route::get('/upload', 'TrackController@upload')->name('track.upload');
         // add new track
         Route::post('/', 'TrackController@store')->name('track.store');
         // show edit track form

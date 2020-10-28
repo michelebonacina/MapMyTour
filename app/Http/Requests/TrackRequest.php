@@ -25,7 +25,7 @@ class TrackRequest extends FormRequest
     {
         // standard validation
         $validate = [
-            'name' => 'required',
+            'fileUpload' => 'required',
         ];
         // track update validation
         $previous = request()->session()->get('_previous')['url'];

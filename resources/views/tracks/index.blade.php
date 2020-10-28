@@ -6,7 +6,7 @@
 <div class="container">
     <div class="row">
         <div class="col-sm">
-            <a href="{{route('track.create')}}" class="btn btn-success">@lang('track.new')</a>
+            <a href="{{route('track.upload')}}" class="btn btn-success">@lang('track.upload')</a>
         </div>
         <div class="col-sm text-right">
             <button type="button" class="btn btn-primary" disabled>@lang('general.switch_map')</button>
