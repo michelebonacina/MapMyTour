@@ -14,7 +14,7 @@ const DahboardLayout = () => import('../components/Layouts/Dashboard.vue' /* web
 const Dashboard = () => import('../components/Dashboard.vue' /* webpackChunkName: "resource/js/components/dashboard" */);
 /* Authenticated Component */
 
-const ExampleComponent = () => import('../components/ExampleComponent.vue' /* webpackChunkName: "resource/js/components/dashboard" */);
+// const ExampleComponent = () => import('../components/ExampleComponent.vue' /* webpackChunkName: "resource/js/components/example-component" */);
 
 const Routes = [
   ...AuthRoutes,
