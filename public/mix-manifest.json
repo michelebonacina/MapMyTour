@@ -1,8 +1,12 @@
 {
     "/js/app.js": "/js/app.js",
-    "/js/resource/js/components/login.js": "/js/resource/js/components/login.js",
-    "/js/resource/js/components/register.js": "/js/resource/js/components/register.js",
     "/js/resource/js/components/layouts/dashboard.js": "/js/resource/js/components/layouts/dashboard.js",
     "/js/resource/js/components/dashboard.js": "/js/resource/js/components/dashboard.js",
+    "/js/resource/js/components/auth/login.js": "/js/resource/js/components/auth/login.js",
+    "/js/resource/js/components/auth/register.js": "/js/resource/js/components/auth/register.js",
+    "/js/resource/js/components/auth/forgot.js": "/js/resource/js/components/auth/forgot.js",
+    "/js/resource/js/components/auth/reset.js": "/js/resource/js/components/auth/reset.js",
+    "/js/resource/js/components/auth/verify.js": "/js/resource/js/components/auth/verify.js",
+    "/js/resource/js/components/user/password-confirm.js": "/js/resource/js/components/user/password-confirm.js",
     "/css/app.css": "/css/app.css"
 }

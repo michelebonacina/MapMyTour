@@ -1,13 +1,10 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import store from '../store';
+import AuthRoutes from './auth';
+import UserRoutes from './user';
 
 Vue.use(VueRouter);
-
-/* Guest Component */
-const Login = () => import('../components/Login.vue' /* webpackChunkName: "resource/js/components/login" */);
-const Register = () => import('../components/Register.vue' /* webpackChunkName: "resource/js/components/register" */);
-/* Guest Component */
 
 /* Layouts */
 const DahboardLayout = () => import('../components/Layouts/Dashboard.vue' /* webpackChunkName: "resource/js/components/layouts/dashboard" */);
@@ -20,24 +17,8 @@ const Dashboard = () => import('../components/Dashboard.vue' /* webpackChunkName
 const ExampleComponent = () => import('../components/ExampleComponent.vue' /* webpackChunkName: "resource/js/components/dashboard" */);
 
 const Routes = [
-  {
-    name: 'login',
-    path: '/login',
-    component: Login,
-    meta: {
-      middleware: 'guest',
-      title: `Login`,
-    },
-  },
-  {
-    name: 'register',
-    path: '/register',
-    component: Register,
-    meta: {
-      middleware: 'guest',
-      title: `Register`,
-    },
-  },
+  ...AuthRoutes,
+  ...UserRoutes,
   /*
   {
     name: 'home',
@@ -51,6 +32,7 @@ const Routes = [
   */
   {
     path: '/',
+    alias: '/home',
     component: DahboardLayout,
     meta: {
       middleware: 'auth',

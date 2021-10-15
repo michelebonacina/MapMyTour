@@ -2126,10 +2126,8 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js"
 var app = new Vue({
   el: '#app',
   router: _router__WEBPACK_IMPORTED_MODULE_1__["default"],
-  store: _store__WEBPACK_IMPORTED_MODULE_2__["default"],
-  render: function render(h) {
-    return h(_App_vue__WEBPACK_IMPORTED_MODULE_0__["default"]);
-  }
+  store: _store__WEBPACK_IMPORTED_MODULE_2__["default"] // render: h => h(App),
+
 });
 
 /***/ }),
@@ -2179,6 +2177,80 @@ window.axios.defaults.withCredentials = true;
 
 /***/ }),
 
+/***/ "./resources/js/router/auth.js":
+/*!*************************************!*\
+  !*** ./resources/js/router/auth.js ***!
+  \*************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+/* Auth Component */
+var Login = function Login() {
+  return __webpack_require__.e(/*! import() | resource/js/components/auth/login */ "resource/js/components/auth/login").then(__webpack_require__.bind(__webpack_require__, /*! ../components/auth/Login.vue */ "./resources/js/components/auth/Login.vue"));
+};
+
+var Register = function Register() {
+  return __webpack_require__.e(/*! import() | resource/js/components/auth/register */ "resource/js/components/auth/register").then(__webpack_require__.bind(__webpack_require__, /*! ../components/auth/Register.vue */ "./resources/js/components/auth/Register.vue"));
+};
+
+var Forgot = function Forgot() {
+  return __webpack_require__.e(/*! import() | resource/js/components/auth/forgot */ "resource/js/components/auth/forgot").then(__webpack_require__.bind(__webpack_require__, /*! ../components/auth/Forgot.vue */ "./resources/js/components/auth/Forgot.vue"));
+};
+
+var Reset = function Reset() {
+  return __webpack_require__.e(/*! import() | resource/js/components/auth/reset */ "resource/js/components/auth/reset").then(__webpack_require__.bind(__webpack_require__, /*! ../components/auth/Reset.vue */ "./resources/js/components/auth/Reset.vue"));
+};
+
+var Verify = function Verify() {
+  return __webpack_require__.e(/*! import() | resource/js/components/auth/verify */ "resource/js/components/auth/verify").then(__webpack_require__.bind(__webpack_require__, /*! ../components/auth/Verify.vue */ "./resources/js/components/auth/Verify.vue"));
+};
+/* Auth Component */
+
+
+var AuthRoutes = [{
+  name: 'login',
+  path: '/login',
+  component: Login,
+  meta: {
+    middleware: 'guest',
+    title: "Login"
+  }
+}, {
+  name: 'register',
+  path: '/register',
+  component: Register,
+  meta: {
+    middleware: 'guest',
+    title: "Register"
+  }
+}, {
+  name: 'reset',
+  path: '/reset',
+  component: Reset,
+  meta: {
+    middleware: 'guest',
+    title: "Reset Password"
+  }
+}, {
+  name: 'forgot',
+  path: '/forgot',
+  component: Forgot,
+  meta: {
+    middleware: 'guest',
+    title: "Forgot Password"
+  }
+}, {
+  name: 'verify',
+  path: '/verify',
+  component: Verify,
+  meta: {
+    middleware: 'guest',
+    title: "Verify Password"
+  }
+}];
+module.exports = AuthRoutes;
+
+/***/ }),
+
 /***/ "./resources/js/router/index.js":
 /*!**************************************!*\
   !*** ./resources/js/router/index.js ***!
@@ -2190,27 +2262,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../store */ "./resources/js/store/index.js");
-/* provided dependency */ var process = __webpack_require__(/*! process/browser */ "./node_modules/process/browser.js");
+/* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./auth */ "./resources/js/router/auth.js");
+/* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_auth__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _user__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./user */ "./resources/js/router/user.js");
+/* harmony import */ var _user__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_user__WEBPACK_IMPORTED_MODULE_2__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]);
-/* Guest Component */
 
-var Login = function Login() {
-  return __webpack_require__.e(/*! import() | resource/js/components/login */ "resource/js/components/login").then(__webpack_require__.bind(__webpack_require__, /*! ../components/Login.vue */ "./resources/js/components/Login.vue"));
-};
 
-var Register = function Register() {
-  return __webpack_require__.e(/*! import() | resource/js/components/register */ "resource/js/components/register").then(__webpack_require__.bind(__webpack_require__, /*! ../components/Register.vue */ "./resources/js/components/Register.vue"));
-};
-/* Guest Component */
 
+vue__WEBPACK_IMPORTED_MODULE_3__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_4__["default"]);
 /* Layouts */
-
 
 var DahboardLayout = function DahboardLayout() {
   return __webpack_require__.e(/*! import() | resource/js/components/layouts/dashboard */ "resource/js/components/layouts/dashboard").then(__webpack_require__.bind(__webpack_require__, /*! ../components/Layouts/Dashboard.vue */ "./resources/js/components/Layouts/Dashboard.vue"));
@@ -2230,23 +2307,7 @@ var ExampleComponent = function ExampleComponent() {
   return __webpack_require__.e(/*! import() | resource/js/components/dashboard */ "resource/js/components/dashboard").then(__webpack_require__.bind(__webpack_require__, /*! ../components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue"));
 };
 
-var Routes = [{
-  name: 'login',
-  path: '/login',
-  component: Login,
-  meta: {
-    middleware: 'guest',
-    title: "Login"
-  }
-}, {
-  name: 'register',
-  path: '/register',
-  component: Register,
-  meta: {
-    middleware: 'guest',
-    title: "Register"
-  }
-},
+var Routes = [].concat(_toConsumableArray((_auth__WEBPACK_IMPORTED_MODULE_1___default())), _toConsumableArray((_user__WEBPACK_IMPORTED_MODULE_2___default())), [
 /*
 {
   name: 'home',
@@ -2260,6 +2321,7 @@ var Routes = [{
 */
 {
   path: '/',
+  alias: '/home',
   component: DahboardLayout,
   meta: {
     middleware: 'auth'
@@ -2272,13 +2334,13 @@ var Routes = [{
       title: "Dashboard"
     }
   }]
-}];
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
+}]);
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_4__["default"]({
   mode: 'history',
   routes: Routes
 });
 router.beforeEach(function (to, from, next) {
-  document.title = "".concat(to.meta.title, " - ").concat(process.env.MIX_APP_NAME);
+  document.title = "".concat(to.meta.title, " - ").concat("Laravel Base");
 
   if (to.meta.middleware == 'guest') {
     if (_store__WEBPACK_IMPORTED_MODULE_0__["default"].state.auth.authenticated) {
@@ -2299,6 +2361,32 @@ router.beforeEach(function (to, from, next) {
   }
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (router);
+
+/***/ }),
+
+/***/ "./resources/js/router/user.js":
+/*!*************************************!*\
+  !*** ./resources/js/router/user.js ***!
+  \*************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+/* User Components */
+var PasswordConfirm = function PasswordConfirm() {
+  return __webpack_require__.e(/*! import() | resource/js/components/user/password-confirm */ "resource/js/components/user/password-confirm").then(__webpack_require__.bind(__webpack_require__, /*! ../components/user/PasswordConfirm.vue */ "./resources/js/components/user/PasswordConfirm.vue"));
+};
+/* User Components */
+
+
+var UserRoutes = [{
+  name: 'password-confirm',
+  path: '/password-confirm',
+  component: PasswordConfirm,
+  meta: {
+    middleware: 'guest',
+    title: "Password Confirm"
+  }
+}];
+module.exports = UserRoutes;
 
 /***/ }),
 
@@ -54512,7 +54600,7 @@ var index = {
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"range","registry":true,"raw":"axios@^0.21","name":"axios","escapedName":"axios","rawSpec":"^0.21","saveSpec":null,"fetchSpec":"^0.21"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_shasum":"c67b90dc0568e5c1cf2b0b858c43ba28e2eda575","_spec":"axios@^0.21","_where":"D:\\\\Data\\\\Laragon\\\\www\\\\laravel-base","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundleDependencies":false,"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"deprecated":false,"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
+module.exports = JSON.parse('{"_args":[["axios@0.21.4","D:\\\\Data\\\\Laragon\\\\www\\\\laravel-base"]],"_development":true,"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"D:\\\\Data\\\\Laragon\\\\www\\\\laravel-base","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
 
 /***/ })
 
@@ -54623,7 +54711,7 @@ module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBun
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resource/js/components/login":1,"resource/js/components/register":1,"resource/js/components/layouts/dashboard":1,"resource/js/components/dashboard":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resource/js/components/layouts/dashboard":1,"resource/js/components/dashboard":1,"resource/js/components/auth/login":1,"resource/js/components/auth/register":1,"resource/js/components/auth/forgot":1,"resource/js/components/auth/reset":1,"resource/js/components/auth/verify":1,"resource/js/components/user/password-confirm":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

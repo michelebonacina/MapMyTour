@@ -70,6 +70,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "login",
@@ -1083,11 +1086,24 @@ var render = function() {
                   _c(
                     "label",
                     [
+                      _vm._v("Forgot password? "),
+                      _c("router-link", { attrs: { to: { name: "reset" } } }, [
+                        _vm._v("Reset It !")
+                      ])
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-12 text-center" }, [
+                  _c(
+                    "label",
+                    [
                       _vm._v("Don't have an account? "),
                       _c(
                         "router-link",
                         { attrs: { to: { name: "register" } } },
-                        [_vm._v("Register Now!")]
+                        [_vm._v("Register Now !")]
                       )
                     ],
                     1

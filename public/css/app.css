@@ -10004,3 +10004,18 @@ h3 {
     border-color: #dee2e6;
   }
 }
+html,
+body,
+div#app,
+div#dashboard {
+  height: 100%;
+  width: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.single-line {
+  display: block;
+}
